@@ -1,0 +1,12 @@
+{
+  "name": "node-dev-environment",
+  "version": "1.0.0",
+  "main": "bin/www.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon bin/www.js"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
