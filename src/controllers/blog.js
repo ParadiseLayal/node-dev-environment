@@ -12,33 +12,12 @@ const getList = (author, keyword) => {
     }
 
     return execSQL(sql);
-    // return [
-    //     {
-    //         id: 1,
-    //         title: '在线答疑',
-    //         content: '请拨打电话188818181818',
-    //         author: 'loyal.pan',
-    //         createdAt: '2017-12-12',
-    //     },
-    //     {
-    //         id: 2,
-    //         title: '在线答疑',
-    //         content: '请拨打电话188818181818',
-    //         author: 'loyal.pan',
-    //         createdAt: '2018-12-12',
-    //     }
-    // ]
 
 }
 // 获取博客详情
 const getDetail = (id) => {
-    return {
-        id: 1,
-        title: '在线答疑',
-        content: '请拨打电话188818181818',
-        author: 'loyal.pan',
-        createdAt: '2017-12-12',
-    }
+    let sql = `select * from blogs where id='${id}'`
+    return execSQL(sql);
 }
 
 // 创建新的博客

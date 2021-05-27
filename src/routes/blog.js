@@ -16,8 +16,10 @@ const handleBlogRoute = (req, res) => {
     }
     if (method === 'GET' && req.path === '/api/blog/detail') {
 
-        const detailData = getDetail(id)
-        return new SuccessModel(detailData)
+        const detailDataPromise = getDetail(id)
+        return detailDataPromise.then(detailData => {
+            return new SuccessModel(detailData)
+        })
     }
     if (method === 'POST' && req.path === '/api/blog/new') {
         const newBlogData = createNewBlog(blogData)
