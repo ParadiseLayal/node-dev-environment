@@ -4,9 +4,8 @@ const { MYSQL_CONFIG } = require('../config/db.js');
 const connection = mysql.createConnection(MYSQL_CONFIG);
 
 // 开始连接
-connection.connect();
-
-
+// connection.connect();
+// 断开连接
 // connection.end();
 function execSQL(sql) {
   const promise = new Promise((resolve, reject) => {

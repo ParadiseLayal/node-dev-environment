@@ -22,21 +22,39 @@ const getDetail = (id) => {
 
 // 创建新的博客
 const createNewBlog = (blogData = {}) => {
-    console.log('createNewBlog', blogData)
-    return {
-        id: 1
-    }
+    const { title, content, author } = blogData
+    const createdAt = Date.now()
+
+    let sql = `insert into blogs (title, content, author, createdAt) values ('${title}', '${content}', '${author}', ${createdAt})`
+    
+    return execSQL(sql).then(insertedResult => {
+        console.log(insertedResult)
+        return {
+            id: insertedResult.insertId
+        }
+    })
 }
 // 更新博客
 const updateBlog = (id, blogData = {}) => {
-    console.log('id', id)
-    console.log('blogData', blogData)
-    return true;
+    const { title, content } = blogData
+    let sql = `update blogs set title='${title}',content='${content}' where id=${id}`
+    return execSQL(sql).then(updateResult => {
+        console.log(updateResult)
+        const {affectedRows}=updateResult
+        let result = affectedRows == 1 ? true:  false
+        return result;
+    })
 }
 // 删除博客
-const deleteBlog = (id) => {
-    console.log('id', id)
-    return true;
+const deleteBlog = (id, author) => {
+    let sql =  `delete from blogs where id=${id} and author='${author}'`
+
+    return execSQL(sql).then(deleteResult => {
+        console.log(deleteResult)
+        const {affectedRows} = deleteResult
+        let result = affectedRows === 1 ? true : false
+        return result
+    })
 }
 module.exports = {
     getList,
